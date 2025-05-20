@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EcoWaste</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-recycle"></i>
+                    <span>EcoWaste</span>
+                </div>
+                <button class="sidebar-close" id="sidebar-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Dashboard</h3>
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="#"><i class="fas fa-home"></i> Overview</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-map"></i> Map View</a>
+                        </li>
+                        <li>
+                            <a href="#" id="bin-management-link"><i class="fas fa-trash"></i> Bin Management</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-chart-bar"></i> Analytics</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-file-alt"></i> Reports</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Management</h3>
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="#"><i class="fas fa-users"></i> Users</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-truck"></i> Drivers</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-trash"></i> Bins</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-calendar"></i> Schedules</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                    <li>
+                        <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Admin Dashboard</h1>
+                </div>
+                <div class="nav-right">
+                    <button class="btn btn-primary" id="add-bin-btn">
+                        <i class="fas fa-plus"></i> Add New Bin
+                    </button>
+                    <div class="notification-bell" id="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-indicator"></span>
+                        <div class="notification-dropdown" id="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <button class="close-notifications">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item">
+                                    <p>Bin #1042 is now full and needs collection</p>
+                                    <span class="notification-time">5 min ago</span>
+                                </div>
+                                <div class="notification-item">
+                                    <p>Driver John assigned to Route #7</p>
+                                    <span class="notification-time">15 min ago</span>
+                                </div>
+                                <div class="notification-item">
+                                    <p>New citizen report: Damaged bin at Main St</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                                <div class="notification-item">
+                                    <p>System update completed successfully</p>
+                                    <span class="notification-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile" id="user-profile">
+                        <div class="avatar">
+                            <span>AD</span>
+                        </div>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <div class="user-info">
+                                <p class="user-name">Admin User</p>
+                                <p class="user-email">admin@ecowaste.com</p>
+                            </div>
+                            <ul class="user-menu">
+                                <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Stats Cards -->
+                <div class="stats-cards">
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <h3>Total Bins</h3>
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        <div class="stat-value" id="total-bins-count">1,248</div>
+                        <div class="stat-change">+12 from last month</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <h3>Bins Requiring Collection</h3>
+                            <span class="badge red">24</span>
+                        </div>
+                        <div class="stat-value" id="bins-requiring-collection">86</div>
+                        <div class="stat-change"><span class="red-text">+8%</span> from yesterday</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <h3>Active Drivers</h3>
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-value">32</div>
+                        <div class="stat-change"><span class="green-text">98%</span> on schedule</div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-header">
+                            <h3>Waste Collected (tons)</h3>
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div class="stat-value">128.5</div>
+                        <div class="stat-change"><span class="green-text">+12%</span> from last week</div>
+                    </div>
+                </div>
+
+                <!-- Bin Management Section -->
+                <div class="card bin-management-card">
+                    <div class="card-header">
+                        <h3>Bin Management</h3>
+                        <p>Real-time monitoring of all bins</p>
+                    </div>
+                    <div class="card-content">
+                        <!-- Add Real-time Bin Monitoring Section -->
+                        <div class="real-time-monitoring">
+                            <div class="monitoring-header">
+                                <h4>Real-time Bin Status</h4>
+                                <div class="monitoring-controls">
+                                    <span class="status-indicator">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Connected</span>
+                                    </span>
+                                    <button class="btn btn-outline btn-sm" id="refresh-status-btn">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="bin-status-display">
+                                <div class="fill-level-container">
+                                    <div class="fill-level-header">
+                                        <h5>Current Fill Level</h5>
+                                        <span class="bin-id">Bin #001</span>
+                                    </div>
+                                    <div class="fill-level-gauge">
+                                        <div class="gauge-value" id="fill-level-value">0%</div>
+                                        <div class="gauge-bar">
+                                            <div class="gauge-fill" id="gauge-fill"></div>
+                                        </div>
+                                    </div>
+                                    <div class="fill-status" id="fill-status">Empty</div>
+                                </div>
+                                <div class="bin-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Last Updated: </span>
+                                        <span id="last-updated">-</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Location: </span>
+                                        <span>SmartDustbin Network</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bin-filters">
+                            <div class="filter-group">
+                                <label for="bin-type-filter">Bin Type:</label>
+                                <select id="bin-type-filter">
+                                    <option value="all">All Types</option>
+                                    <option value="general">General</option>
+                                    <option value="recyclable">Recyclable</option>
+                                    <option value="hazardous">Hazardous</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="bin-status-filter">Status:</label>
+                                <select id="bin-status-filter">
+                                    <option value="all">All Statuses</option>
+                                    <option value="empty">Empty</option>
+                                    <option value="half-full">Half-full</option>
+                                    <option value="full">Full</option>
+                                    <option value="damaged">Damaged</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="bin-search">Search:</label>
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="bin-search" placeholder="Search by ID or location">
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-sm" id="refresh-bins-btn">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                        <div class="bin-cards" id="bin-cards">
+                            <!-- Bin cards will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map and Charts Section -->
+                <div class="map-chart-section">
+                    <div class="card map-card">
+                        <div class="card-header">
+                            <h3>Bin Status Map</h3>
+                            <p>Real-time view of all bins in the system</p>
+                        </div>
+                        <div class="map-container" id="admin-map">
+                            <!-- Map will be rendered here by JavaScript -->
+                            <div class="loading-spinner" id="map-loading">
+                                <i class="fas fa-circle-notch fa-spin"></i>
+                                <span>Loading map...</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="map-legend">
+                                <div class="legend-item">
+                                    <span class="legend-dot green"></span>
+                                    <span>Empty</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot yellow"></span>
+                                    <span>Half-full</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot red"></span>
+                                    <span>Full</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-dot gray"></span>
+                                    <span>Damaged</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>Collection Analytics</h3>
+                            <p>Weekly waste collection data</p>
+                        </div>
+                        <div class="chart-container" id="admin-chart">
+                            <!-- Chart will be rendered here by JavaScript -->
+                            <canvas id="collection-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs for Tables -->
+                <div class="tabs-section">
+                    <div class="tabs-header">
+                        <div class="tabs">
+                            <button class="tab-btn active" data-tab="bins-tab">Bin Status</button>
+                            <button class="tab-btn" data-tab="drivers-tab">Driver Status</button>
+                        </div>
+                        <div class="tabs-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search...">
+                            </div>
+                            <button class="btn btn-icon btn-outline">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <div class="dropdown">
+                                <button class="btn btn-icon btn-outline dropdown-toggle">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="#">Export as CSV</a>
+                                    <a href="#">Print report</a>
+                                    <a href="#">Filter data</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="bins-tab">
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Bin ID</th>
+                                            <th>Location</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Fill Level</th>
+                                            <th>Last Collection</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bins-table-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="drivers-tab">
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Driver</th>
+                                            <th>Status</th>
+                                            <th>Current Route</th>
+                                            <th>Progress</th>
+                                            <th>Vehicle</th>
+                                            <th>Contact</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="drivers-table-body">
+                                        <!-- Table rows will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Bin Modal -->
+    <div class="modal" id="add-bin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Bin</h3>
+                <button class="modal-close" id="add-bin-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="add-bin-form">
+                    <div class="form-group">
+                        <label for="bin-id">Bin ID</label>
+                        <input type="text" id="bin-id" placeholder="e.g., BIN-1050" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bin-location">Location</label>
+                        <input type="text" id="bin-location" placeholder="e.g., Main St & 5th Ave" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bin-type">Bin Type</label>
+                        <select id="bin-type" required>
+                            <option value="" disabled selected>Select bin type</option>
+                            <option value="General">General</option>
+                            <option value="Recyclable">Recyclable</option>
+                            <option value="Hazardous">Hazardous</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bin-capacity">Capacity (liters)</label>
+                        <input type="number" id="bin-capacity" min="10" max="1000" value="120" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bin-status">Initial Status</label>
+                        <select id="bin-status" required>
+                            <option value="Empty" selected>Empty</option>
+                            <option value="Half-full">Half-full</option>
+                            <option value="Full">Full</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Map Location</label>
+                        <div class="map-picker" id="map-picker">
+                            <!-- Small map for picking location -->
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p>Click on the map to set bin location</p>
+                            </div>
+                        </div>
+                        <div class="coordinates">
+                            <div class="coordinate-group">
+                                <label for="bin-lat">Latitude</label>
+                                <input type="text" id="bin-lat" placeholder="e.g., 40.7128" required>
+                            </div>
+                            <div class="coordinate-group">
+                                <label for="bin-lng">Longitude</label>
+                                <input type="text" id="bin-lng" placeholder="e.g., -74.0060" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancel-add-bin-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submit-add-bin-btn">Add Bin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bin Details Modal -->
+    <div class="modal" id="bin-details-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Bin Details</h3>
+                <button class="modal-close" id="bin-details-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="bin-details-container">
+                    <div class="bin-details-header">
+                        <div class="bin-icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        <div class="bin-info">
+                            <h4 id="detail-bin-id">BIN-1042</h4>
+                            <p id="detail-bin-location">Main St & 5th Ave</p>
+                            <span class="status-badge" id="detail-bin-status">Full</span>
+                        </div>
+                    </div>
+                    <div class="bin-details-content">
+                        <div class="detail-section">
+                            <h5>Fill Level</h5>
+                            <div class="fill-level-container">
+                                <div class="fill-level-visual">
+                                    <div class="fill-level-bar">
+                                        <div class="fill-level-progress" id="detail-fill-level-bar"></div>
+                                    </div>
+                                    <span class="fill-level-text" id="detail-fill-level">95%</span>
+                                </div>
+                                <div class="fill-level-history">
+                                    <h6>Fill Level History</h6>
+                                    <canvas id="fill-level-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <h5>Bin Information</h5>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Type:</span>
+                                    <span class="detail-value" id="detail-bin-type">General</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Capacity:</span>
+                                    <span class="detail-value" id="detail-bin-capacity">120 liters</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Installation Date:</span>
+                                    <span class="detail-value" id="detail-installation-date">Jan 15, 2023</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Last Maintenance:</span>
+                                    <span class="detail-value" id="detail-last-maintenance">Mar 10, 2025</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Last Collection:</span>
+                                    <span class="detail-value" id="detail-last-collection">2 days ago</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Sensor Status:</span>
+                                    <span class="detail-value" id="detail-sensor-status">
+                                        <i class="fas fa-check-circle text-success"></i> Operational
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <h5>Collection History</h5>
+                            <div class="collection-history" id="collection-history">
+                                <div class="collection-item">
+                                    <div class="collection-date">May 12, 2025</div>
+                                    <div class="collection-details">
+                                        <span>Driver: John Smith</span>
+                                        <span>Amount: 18.5 kg</span>
+                                    </div>
+                                </div>
+                                <div class="collection-item">
+                                    <div class="collection-date">May 9, 2025</div>
+                                    <div class="collection-details">
+                                        <span>Driver: Sarah Johnson</span>
+                                        <span>Amount: 22.3 kg</span>
+                                    </div>
+                                </div>
+                                <div class="collection-item">
+                                    <div class="collection-date">May 6, 2025</div>
+                                    <div class="collection-details">
+                                        <span>Driver: John Smith</span>
+                                        <span>Amount: 19.8 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bin-details-actions">
+                        <button class="btn btn-outline" id="assign-collection-btn">
+                            <i class="fas fa-truck"></i> Assign Collection
+                        </button>
+                        <button class="btn btn-warning" id="schedule-maintenance-btn">
+                            <i class="fas fa-tools"></i> Schedule Maintenance
+                        </button>
+                        <button class="btn btn-danger" id="remove-bin-btn">
+                            <i class="fas fa-trash-alt"></i> Remove Bin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Remove Bin Modal -->
+    <div class="modal" id="confirm-remove-modal">
+        <div class="modal-content confirm-modal">
+            <div class="modal-header">
+                <h3>Confirm Bin Removal</h3>
+                <button class="modal-close" id="confirm-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="confirm-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Are you sure you want to remove bin <span id="confirm-bin-id">BIN-1042</span>?</p>
+                    <p class="warning-text">This action cannot be undone.</p>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-outline" id="cancel-remove-btn">Cancel</button>
+                    <button class="btn btn-danger" id="confirm-remove-btn">Remove Bin</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard-common.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+    <script src="js/bin-management.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Updated data fetching script -->
+    <script>
+    // Server Configuration
+    const SERVER_URL = 'http://localhost:5000/api/bin-data';
+
+    // Update interval in milliseconds
+    const UPDATE_INTERVAL = 1000;
+
+    // Function to update the fill level display
+    function updateFillLevel(data) {
+        try {
+            const fillLevelValue = document.getElementById('fill-level-value');
+            const gaugeFill = document.getElementById('gauge-fill');
+            const fillStatus = document.getElementById('fill-status');
+            const statusDot = document.querySelector('.status-dot');
+            const statusText = document.querySelector('.status-text');
+            
+            if (!fillLevelValue || !gaugeFill || !fillStatus || !statusDot || !statusText) {
+                console.error('Required elements not found');
+                return;
+            }
+
+            // Update fill level value
+            fillLevelValue.textContent = `${data.level}%`;
+            
+            // Update gauge fill
+            gaugeFill.style.width = `${data.level}%`;
+            
+            // Update status text and colors
+            if (data.level >= 85) {
+                fillStatus.textContent = 'FULL - ALERT!';
+                fillStatus.className = 'fill-status alert';
+                gaugeFill.className = 'gauge-fill alert';
+                statusDot.className = 'status-dot alert';
+            } else if (data.level >= 80) {
+                fillStatus.textContent = 'ALMOST FULL';
+                fillStatus.className = 'fill-status warning';
+                gaugeFill.className = 'gauge-fill warning';
+                statusDot.className = 'status-dot warning';
+            } else if (data.level >= 50) {
+                fillStatus.textContent = 'HALF FULL';
+                fillStatus.className = 'fill-status normal';
+                gaugeFill.className = 'gauge-fill normal';
+                statusDot.className = 'status-dot normal';
+            } else {
+                fillStatus.textContent = 'EMPTY';
+                fillStatus.className = 'fill-status normal';
+                gaugeFill.className = 'gauge-fill normal';
+                statusDot.className = 'status-dot normal';
+            }
+            
+            // Update last updated time
+            const lastUpdated = document.getElementById('last-updated');
+            if (lastUpdated) {
+                lastUpdated.textContent = data.last_updated || 'Never';
+            }
+
+            // Update connection status
+            statusText.textContent = data.status === 'connected' ? 'Connected' : 'Disconnected';
+            statusDot.className = `status-dot ${data.status === 'connected' ? 'connected' : ''}`;
+        } catch (error) {
+            console.error('Error updating fill level:', error);
+        }
+    }
+
+    // Function to fetch data from server
+    async function fetchBinData() {
+        try {
+            const response = await fetch(SERVER_URL);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Received data:', data);
+                updateFillLevel(data);
+            } else {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Error fetching bin data:', error);
+            const statusText = document.querySelector('.status-text');
+            const statusDot = document.querySelector('.status-dot');
+            
+            if (statusText && statusDot) {
+                statusText.textContent = 'Disconnected';
+                statusDot.classList.remove('connected');
+            }
+        }
+    }
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing bin monitoring...');
+        
+        // Initial fetch
+        fetchBinData();
+
+        // Set up periodic updates
+        setInterval(fetchBinData, UPDATE_INTERVAL);
+
+        // Add event listener for manual refresh
+        const refreshBtn = document.getElementById('refresh-status-btn');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', fetchBinData);
+        }
+    });
+    </script>
+
+    <style>
+    /* Add these styles to your existing CSS */
+    .real-time-monitoring {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .monitoring-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .status-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ccc;
+    }
+
+    .status-dot.connected {
+        background-color: #4CAF50;
+    }
+
+    .bin-status-display {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+    }
+
+    .fill-level-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .fill-level-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .fill-level-gauge {
+        text-align: center;
+    }
+
+    .gauge-value {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .gauge-bar {
+        height: 20px;
+        background: #eee;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .gauge-fill {
+        height: 100%;
+        width: 0%;
+        transition: width 0.5s ease;
+    }
+
+    .gauge-fill.normal {
+        background: #4CAF50;
+    }
+
+    .gauge-fill.warning {
+        background: #FFC107;
+    }
+
+    .gauge-fill.alert {
+        background: #F44336;
+    }
+
+    .fill-status {
+        text-align: center;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .fill-status.normal {
+        color: #4CAF50;
+    }
+
+    .fill-status.warning {
+        color: #FFC107;
+    }
+
+    .fill-status.alert {
+        color: #F44336;
+    }
+
+    .bin-details {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .detail-item i {
+        color: #666;
+    }
+    </style>
+</body>
+</html>

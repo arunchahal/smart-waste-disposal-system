@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard - EcoWaste</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/citizen.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-recycle"></i>
+                    <span>EcoWaste</span>
+                </div>
+                <button class="sidebar-close" id="sidebar-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Dashboard</h3>
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="#"><i class="fas fa-home"></i> Overview</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-map"></i> Nearby Bins</a>
+                        </li>
+                        <li>
+                            <a href="#" id="report-issue-link"><i class="fas fa-exclamation-circle"></i> Report Issue</a>
+                        </li>
+                        <li>
+                            <a href="#" id="waste-scanner-link"><i class="fas fa-camera"></i> Waste Scanner</a>
+                        </li>
+                        <li>
+                            <a href="#" id="eco-games-link"><i class="fas fa-gamepad"></i> Eco Games</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-comments"></i> Community</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">My Account</h3>
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="#"><i class="fas fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-recycle"></i> Eco Points
+                                <span class="badge green">120</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    </li>
+                    <li>
+                        <a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Citizen Dashboard</h1>
+                </div>
+                <div class="nav-right">
+                    <button class="btn btn-outline report-btn" id="report-btn">
+                        <i class="fas fa-exclamation-circle"></i> Report Issue
+                    </button>
+                    <button class="btn btn-success scanner-btn" id="scanner-btn">
+                        <i class="fas fa-camera"></i> Scan Waste
+                    </button>
+                    <div class="notification-bell" id="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-indicator"></span>
+                        <div class="notification-dropdown" id="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <button class="close-notifications">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item">
+                                    <p>Collection scheduled for tomorrow in your area</p>
+                                    <span class="notification-time">5 min ago</span>
+                                </div>
+                                <div class="notification-item">
+                                    <p>Your report has been processed</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                                <div class="notification-item">
+                                    <p>You earned 10 points for recycling</p>
+                                    <span class="notification-time">2 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile" id="user-profile">
+                        <div class="avatar">
+                            <span>JC</span>
+                        </div>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <div class="user-info">
+                                <p class="user-name">Jane Citizen</p>
+                                <p class="user-email">jane@example.com</p>
+                            </div>
+                            <ul class="user-menu">
+                                <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Welcome Card -->
+                <div class="card welcome-card">
+                    <div class="card-header">
+                        <h3>Welcome back, Jane!</h3>
+                        <p>Here's what's happening in your area</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-boxes">
+                            <div class="info-box green-box">
+                                <div class="info-icon">
+                                    <i class="fas fa-recycle"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Your Eco Impact</h4>
+                                    <p>You've helped recycle 28kg of waste this month!</p>
+                                </div>
+                            </div>
+                            <div class="info-box blue-box">
+                                <div class="info-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4>Next Collection</h4>
+                                    <p>Scheduled for tomorrow at 9:00 AM in your area</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eco Games Section -->
+                <div class="card games-card">
+                    <div class="card-header">
+                        <h3>Eco Games</h3>
+                        <p>Play and learn while earning eco points!</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="games-container">
+                            <div class="game-item" id="sorting-game">
+                                <div class="game-icon">
+                                    <i class="fas fa-sort"></i>
+                                </div>
+                                <div class="game-info">
+                                    <h4>Waste Sorting Challenge</h4>
+                                    <p>Sort waste items into correct bins</p>
+                                    <div class="game-stats">
+                                        <span><i class="fas fa-trophy"></i> High Score: 120</span>
+                                        <span><i class="fas fa-star"></i> Earn up to 50 points</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success btn-sm">Play Now</button>
+                            </div>
+                            <div class="game-item" id="recycling-quiz">
+                                <div class="game-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div class="game-info">
+                                    <h4>Recycling Quiz</h4>
+                                    <p>Test your knowledge about recycling</p>
+                                    <div class="game-stats">
+                                        <span><i class="fas fa-trophy"></i> High Score: 8/10</span>
+                                        <span><i class="fas fa-star"></i> Earn up to 30 points</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success btn-sm">Play Now</button>
+                            </div>
+                            <div class="game-item" id="eco-city-builder">
+                                <div class="game-icon">
+                                    <i class="fas fa-city"></i>
+                                </div>
+                                <div class="game-info">
+                                    <h4>Eco City Builder</h4>
+                                    <p>Build a sustainable city</p>
+                                    <div class="game-stats">
+                                        <span><i class="fas fa-trophy"></i> Level: 3</span>
+                                        <span><i class="fas fa-star"></i> Earn up to 100 points</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-success btn-sm">Play Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Section -->
+                <div class="card map-card">
+                    <div class="card-header">
+                        <h3>Nearby Waste Bins</h3>
+                        <p>Find the closest bins to your location</p>
+                    </div>
+                    <div class="map-container" id="citizen-map">
+                        <!-- Map will be rendered here by JavaScript -->
+                        <div class="loading-spinner" id="map-loading">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                            <span>Loading map...</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="map-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot green"></span>
+                                <span>Available</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot yellow"></span>
+                                <span>Filling Up</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot red"></span>
+                                <span>Full</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-map-marker-alt"></i> Find Nearest
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs for Tables -->
+                <div class="tabs-section">
+                    <div class="tabs-header">
+                        <div class="tabs">
+                            <button class="tab-btn active" data-tab="nearby-tab">Nearby Bins</button>
+                            <button class="tab-btn" data-tab="schedule-tab">Collection Schedule</button>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="nearby-tab">
+                            <div class="tab-header">
+                                <h3>Bins Near You</h3>
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Search by location...">
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Bin ID</th>
+                                            <th>Location</th>
+                                            <th>Distance</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Fill Level</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="nearby-bins-table">
+                                        <!-- Table rows will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="schedule-tab">
+                            <div class="tab-header">
+                                <h3>Upcoming Collections</h3>
+                                <button class="btn btn-outline btn-sm">
+                                    <i class="fas fa-bell"></i> Set Reminder
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Area</th>
+                                            <th>Waste Type</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="schedule-table">
+                                        <!-- Table rows will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Report Issue Modal -->
+    <div class="modal" id="report-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report an Issue</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="report-form">
+                    <div class="form-group">
+                        <label for="issue-type">Issue Type</label>
+                        <select id="issue-type" required>
+                            <option value="" disabled selected>Select issue type</option>
+                            <option value="damaged">Damaged Bin</option>
+                            <option value="full">Bin is Full</option>
+                            <option value="missed">Missed Collection</option>
+                            <option value="request">Request New Bin</option>
+                            <option value="other">Other Issue</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <div class="location-input">
+                            <input type="text" id="location" placeholder="Enter location" required>
+                            <button type="button" class="btn btn-icon btn-outline" id="use-location-btn">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Describe the issue in detail" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Add Photo (Optional)</label>
+                        <div class="file-upload" id="file-upload-area">
+                            <div class="upload-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <p>Drag and drop or click to upload</p>
+                            <button type="button" class="btn btn-outline btn-sm" id="upload-photo-btn">Upload Photo</button>
+                            <input type="file" id="photo-input" accept="image/*" hidden>
+                        </div>
+                        <div class="uploaded-file" id="uploaded-file" style="display: none;">
+                            <div class="file-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <p class="file-name">image.jpg uploaded</p>
+                            <button type="button" class="btn btn-link btn-sm" id="remove-file-btn">Remove</button>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancel-report-btn">Cancel</button>
+                        <button type="submit" class="btn btn-success" id="submit-report-btn">Submit Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Waste Scanner Modal -->
+    <div class="modal" id="scanner-modal">
+        <div class="modal-content scanner-modal-content">
+            <div class="modal-header">
+                <h3>AI Waste Scanner</h3>
+                <button class="modal-close" id="scanner-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="scanner-container">
+                    <div class="scanner-instructions">
+                        <p>Take a photo of your waste item to identify how to properly dispose of it.</p>
+                        <p>Our AI will analyze the image and provide recycling instructions.</p>
+                    </div>
+                    <div class="scanner-options">
+                        <button class="btn btn-primary" id="take-photo-btn">
+                            <i class="fas fa-camera"></i> Take Photo
+                        </button>
+                        <span class="or-divider">OR</span>
+                        <button class="btn btn-outline" id="upload-waste-photo-btn">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </button>
+                        <input type="file" id="waste-photo-input" accept="image/*" hidden>
+                    </div>
+                    <div class="scanner-preview" id="scanner-preview">
+                        <div class="camera-placeholder" id="camera-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <p>Camera preview will appear here</p>
+                        </div>
+                        <video id="camera-feed" style="display: none;"></video>
+                        <canvas id="photo-canvas" style="display: none;"></canvas>
+                        <div class="preview-image-container" id="preview-image-container" style="display: none;">
+                            <img id="preview-image" src="/placeholder.svg" alt="Waste item preview">
+                        </div>
+                    </div>
+                    <div class="scanner-actions">
+                        <button class="btn btn-success" id="capture-photo-btn" style="display: none;">
+                            <i class="fas fa-camera"></i> Capture
+                        </button>
+                        <button class="btn btn-primary" id="analyze-photo-btn" style="display: none;">
+                            <i class="fas fa-search"></i> Analyze Waste
+                        </button>
+                    </div>
+                </div>
+                <div class="scanner-results" id="scanner-results" style="display: none;">
+                    <div class="results-header">
+                        <h4>Analysis Results</h4>
+                        <div class="eco-points-earned">
+                            <i class="fas fa-star"></i>
+                            <span>+10 Eco Points for scanning!</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div class="result-details">
+                            <h5 id="waste-type">Plastic Bottle</h5>
+                            <p id="waste-description">PET plastic bottle, commonly used for beverages.</p>
+                            <div class="disposal-instructions">
+                                <h6>How to dispose:</h6>
+                                <ul id="disposal-steps">
+                                    <li>Remove cap and label if possible</li>
+                                    <li>Rinse the bottle to remove residue</li>
+                                    <li>Crush to save space (optional)</li>
+                                    <li>Place in recycling bin for plastics</li>
+                                </ul>
+                            </div>
+                            <div class="bin-recommendation">
+                                <h6>Recommended bin:</h6>
+                                <span class="bin-type recyclable">
+                                    <i class="fas fa-recycle"></i> Recyclable Waste
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scanner-actions">
+                        <button class="btn btn-outline" id="scan-new-item-btn">
+                            <i class="fas fa-redo"></i> Scan New Item
+                        </button>
+                        <button class="btn btn-success" id="find-nearest-bin-btn">
+                            <i class="fas fa-map-marker-alt"></i> Find Nearest Bin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waste Sorting Game Modal -->
+    <div class="modal game-modal" id="sorting-game-modal">
+        <div class="modal-content game-modal-content">
+            <div class="modal-header">
+                <h3>Waste Sorting Challenge</h3>
+                <div class="game-score">
+                    <span>Score: <span id="game-score">0</span></span>
+                    <span>Time: <span id="game-timer">60</span>s</span>
+                </div>
+                <button class="modal-close" id="game-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="game-container" id="sorting-game-container">
+                    <div class="game-instructions" id="game-instructions">
+                        <h4>How to Play</h4>
+                        <p>Drag and drop waste items into the correct bins to earn points!</p>
+                        <ul>
+                            <li>Correct sorting: +10 points</li>
+                            <li>Incorrect sorting: -5 points</li>
+                            <li>Sort as many items as you can in 60 seconds</li>
+                        </ul>
+                        <button class="btn btn-success" id="start-game-btn">Start Game</button>
+                    </div>
+                    <div class="game-play-area" id="game-play-area" style="display: none;">
+                        <div class="waste-items" id="waste-items">
+                            <!-- Waste items will be generated here -->
+                        </div>
+                        <div class="waste-bins">
+                            <div class="waste-bin recyclable" data-bin-type="recyclable">
+                                <div class="bin-icon">
+                                    <i class="fas fa-recycle"></i>
+                                </div>
+                                <div class="bin-label">Recyclable</div>
+                            </div>
+                            <div class="waste-bin general" data-bin-type="general">
+                                <div class="bin-icon">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <div class="bin-label">General Waste</div>
+                            </div>
+                            <div class="waste-bin organic" data-bin-type="organic">
+                                <div class="bin-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                                <div class="bin-label">Organic</div>
+                            </div>
+                            <div class="waste-bin hazardous" data-bin-type="hazardous">
+                                <div class="bin-icon">
+                                    <i class="fas fa-skull-crossbones"></i>
+                                </div>
+                                <div class="bin-label">Hazardous</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-results" id="game-results" style="display: none;">
+                        <h4>Game Over!</h4>
+                        <div class="result-score">
+                            <p>Your Score: <span id="final-score">0</span></p>
+                            <p>Eco Points Earned: <span id="eco-points-earned">0</span></p>
+                        </div>
+                        <div class="result-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Correct Sorts:</span>
+                                <span class="stat-value" id="correct-sorts">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Incorrect Sorts:</span>
+                                <span class="stat-value" id="incorrect-sorts">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Items Sorted:</span>
+                                <span class="stat-value" id="total-sorted">0</span>
+                            </div>
+                        </div>
+                        <div class="game-actions">
+                            <button class="btn btn-outline" id="play-again-btn">
+                                <i class="fas fa-redo"></i> Play Again
+                            </button>
+                            <button class="btn btn-success" id="exit-game-btn">
+                                <i class="fas fa-check"></i> Exit Game
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard-common.js"></script>
+    <script src="js/citizen-dashboard.js"></script>
+    <script src="js/waste-scanner.js"></script>
+    <script src="js/waste-games.js"></script>
+</body>
+</html>
